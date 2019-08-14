@@ -6,8 +6,12 @@ app = Flask(__name__)
 def form():
     return render_template('index.html')
 
-@app.route('/process_data', methods = ['POST'])
-def process_data():
+@app.route('/process', methods = ['POST'])
+def process_view():
+    if not request.files:
+        return "No file"
+    request_file = request.files['data_file']
+
     return "processed!"
 
 
