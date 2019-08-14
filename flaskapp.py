@@ -10,8 +10,7 @@ def form():
 def process_view():
     if not request.files:
         return "No file"
-    request_file = request.files['data_file']
-
+    files = request.files.getlist("data_files")
     return "processed!"
 
 
