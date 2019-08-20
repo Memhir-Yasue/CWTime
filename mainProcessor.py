@@ -36,6 +36,10 @@ class Automater:
         for df in df_list:
             # Change column name
             df.columns = cols
+            year = [str(df.Date[row]).split('/')[2] for row in range(len(df))]
+            month = [str(df.Date[row]).split('/')[0] for row in range(len(df))]
+            df['Year'] = year
+            df['Month'] = month
             clean_df_list.append(df)
         return clean_df_list
 
@@ -48,12 +52,18 @@ class Automater:
         return concatinated_df
 
     def add_columns(self,df):
-        df['Year'] = pd.Series()
-        df['Month'] = pd.Series()
-        for row in range(len(df)):
-            df.Year[row] = int(float(str(df.Date[row]).split('/')[2]))
-            df.Month[row] = int(float(str(df.Date[row]).split('/')[0]))
-        # df['Year1'] = str(df.Year).split('\\')
+        # year = [str(df.Date[row]).split('/')[2] for row in range(len(df))]
+        # month = [str(df.Date[row]).split('/')[0] for row in range(len(df))]
+        # df['Year'] = year
+        # df['Month'] = month
+
+
+        # df['Year'] = pd.Series()
+        # df['Month'] = pd.Series()
+        # for row in range(len(df)):
+        #     df.Year[row] = str(df.Date[row]).split('/')[2]
+        #     df.Month[row] = str(df.Date[row]).split('/')[0]
+        # # df['Year1'] = str(df.Year).split('\\')
         return df
 
     def output_csv(self, df):
